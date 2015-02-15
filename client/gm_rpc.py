@@ -8,7 +8,16 @@ from rpc_handlers.rpc_handler_2 import RPC_Handler_2
 
 from PyQt4.QtCore import QCoreApplication
 import sys
+from PyQt4 import QtCore, QtGui
 
+class Window( QtGui.QMainWindow ):
+    def __init__( self ):
+        super( Window, self ).__init__()
+        self.setWindowTitle( "GM-GUI" )
+        self.resize( 200, 300 )
+        label = QtGui.QLabel( "Here is GM-GUI paint" )
+        label.setAlignment( QtCore.Qt.AlignCenter )
+        self.setCentralWidget( label )
 
 class GM_RPC(object):
     def __init__(self, sep, port):
@@ -31,10 +40,12 @@ class GM_RPC(object):
 
 if __name__ == '__main__':
 
-    app = QCoreApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     #rpc = GM_RPC('###', 9000)
     rpc = GM_RPC('###', 12345)
     rpc.start()
+    demo = Window()
+    demo.show()
     app.exec_()
 
 
